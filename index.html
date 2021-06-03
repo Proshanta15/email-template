@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email</title>
+
+    <style>
+      body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background: rgb(107, 179, 172);
+      }
+
+      #container {
+        max-width: 650px;
+        width: 650px;
+        background: #dddddd;
+        margin: 0 auto;
+        border: 4px solid rgb(148, 146, 146);
+      }
+      a {
+        text-decoration: none;
+        color: #0000ee;
+      }
+      a:hover {
+        color: #1554a7;
+        -webkit-transition: 0.4s;
+        -o-transition: 0.4s;
+        transition: 0.4s;
+      }
+      .header {
+        border-bottom: 2px solid rgb(100, 100, 100);
+      }
+      .header p {
+        padding-top: 5px;
+        padding-right: 10px;
+        text-align: right;
+        font-size: 18px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      .header-logo {
+        width: 100%;
+        background: #dddddd;
+        border-bottom: 1px solid #000;
+        overflow: hidden;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .header-logo .logo-left {
+        float: left;
+      }
+      .header-logo .logo-left img {
+        width: 100px;
+      }
+      .header-logo .logo-left img:hover {
+        -webkit-transform: translateY(4px);
+        -ms-transform: translateY(4px);
+        transform: translateY(4px);
+        -webkit-transition: 0.4s;
+        -o-transition: 0.4s;
+        transition: 0.4s;
+      }
+      .header-logo .logo-right {
+        float: right;
+      }
+      .header-logo .logo-right p {
+        margin-left: 20px;
+        font-size: 26px;
+        text-align: center;
+        color: #275f5f;
+      }
+
+      .banner {
+        overflow: hidden;
+        border-bottom: 1px solid rgb(160, 160, 160);
+      }
+      .one-shop{
+        overflow: hidden;
+        padding: 10px 15px;
+        border-bottom: 1px solid #FA7200;
+      }
+      .one-shop p{
+         font-size: 20px;
+         margin: 3px 0px;
+      }
+      .one-shop p:last-child{
+        padding-top: 10px;
+        font-weight: 600;
+        font-size: 22px;
+        
+      }
+      .opportunity {
+        text-align: center;
+        border-bottom: 1px solid #FA7200;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .opportunity h2 {
+        margin-top: 9px;
+        margin-bottom: 3px;
+        color: rgb(51, 50, 50);
+        font-size: 34px;
+    }
+      .opportunity p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 17px;
+      }
+      .item-list {
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .item-list .item {
+        width: 30.8%;
+        display: inline-block;
+        margin: 5px;
+        height: 270px;
+        overflow: hidden;
+      }
+      .item-list .item .item-top {
+        border: 1px solid rgb(174, 174, 174);
+        overflow: hidden;
+      }
+      .item-list .item .item-img {
+        float: left;
+      }
+
+      .item-list .item .item-img img {
+        width: 60px;
+        height: 60px;
+        padding: 5px;
+        margin-top: 10px;
+      }
+      .item-list .item .item-title {
+        float: right;
+      }
+      .item-list .item .item-body {
+        border: 1px solid rgb(174, 174, 174);
+        border-top: none;
+        overflow: hidden;
+        height: 125px;
+      }
+      .item-list .item .item-title p {
+        font-size: 22px;
+        margin-top: 5px;
+        font-weight: 700;
+        padding: 2px;
+        color: #000000;
+        line-height: 30px;
+        margin-bottom: 5px;
+      }
+      .item-list .item .item-body p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+        text-align: justify;
+      }
+      .item-list .item .item-button {
+        margin-top: 10px;
+        text-align: center;
+      }
+      .item-list .item .item-button a {
+        background: #1771e6;
+        margin: 0 auto;
+        padding: 5px 10px;
+        color: #ffffff;
+        border-radius: 5px;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      .item-list .item .item-button a:hover {
+        background: #1554a7;
+        -webkit-transition: 0.4s;
+        -o-transition: 0.4s;
+        transition: 0.4s;
+      }
+      .social {
+        overflow: hidden;
+        width: 100%;
+        height: 45px;
+        border-top: 1px solid rgb(181, 179, 179);
+        padding-top: 10px;
+      }
+      .social .social-left {
+        float: left;
+      }
+      .social .social-left h3 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 25px;
+        padding-left: 15px;
+        font-weight: 500;
+        color: rgb(46, 45, 45);
+      }
+      .social .social-right {
+        float: right;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+      }
+      .social .social-right ul {
+        list-style-type: none;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-right: 20px;
+      }
+      .social .social-right ul li {
+        display: inline-block;
+      }
+      .social .social-right img {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+      }
+      .social .social-right img:hover {
+        -webkit-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        transform: translateY(5px);
+        -webkit-transition: 0.4s;
+        -o-transition: 0.4s;
+        transition: 0.4s;
+      }
+      .social-bottom {
+        overflow: hidden;
+        border-bottom: 1px solid rgb(155, 155, 155);
+        margin-bottom: 10px;
+      }
+      .social-bottom .social-text p {
+        padding: 0px 10px;
+        font-size: 19px;
+        text-align: justify;
+        margin-bottom: 5px;
+      }
+      .contact {
+        overflow: hidden;
+        border-bottom: 1px solid rgb(169, 167, 167);
+        padding-bottom: 5px;
+      }
+      .contact .contact-heading h3 {
+        margin: 5px 0px;
+        margin-bottom: 15px;
+        padding-left: 10px;
+        text-align: center;
+      }
+      .contact p {
+        margin: 5px 0px;
+        padding-left: 10px;
+        font-size: 17px;
+      }
+      .contact .contact-bottom {
+        margin-top: 20px;
+      }
+      .footer {
+        overflow: hidden;
+        margin-top: 25px;
+        text-align: center;
+      }
+      .footer p {
+        margin: 4px 0px;
+        font-size: 14px;
+        padding-bottom: 5px;
+      }
+
+      @media screen and (max-width: 650px) {
+        #container {
+          max-width: 500px;
+          width: 500px;
+        }
+        .header p {
+          font-size: 15px;
+        }
+        .header-logo .logo-right p {
+          font-size: 20px;
+        }
+        .opportunity h2 {
+          font-size: 20px;
+        }
+        .item-list .item {
+          height: 250px;
+        }
+        .item-list .item .item-img img {
+          width: 50px;
+          height: 50px;
+          padding: 5px;
+          margin-top: 5px;
+        }
+        .item-list .item .item-title p {
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 21px;
+        }
+        .item-list .item .item-button a {
+          padding: 3px 5px;
+          font-weight: 500;
+          font-size: 15px;
+        }
+        .item-list .item .item-body p {
+          font-size: 14px;
+        }
+        .social .social-left h3 {
+          margin-top: 10px;
+          margin-bottom: 5px;
+          font-size: 23px;
+        }
+        .social .social-right img {
+          width: 25px;
+          height: 25px;
+        }
+        .social-bottom .social-text p {
+          font-size: 17px;
+          margin-top: 8px;
+          margin-bottom: 10px;
+        }
+        .contact p {
+          font-size: 16px;
+        }
+        .footer p {
+          font-size: 13px;
+        }
+      }
+      @media screen and (max-width: 520px) {
+        #container {
+          max-width: 400px;
+          width: 400px;
+        }
+        .header p {
+          font-size: 14px;
+        }
+        .header-logo .logo-left img {
+          width: 90px;
+          height: 75px;
+        }
+        .header-logo .logo-right p {
+          font-size: 16px;
+          margin-left: 0px;
+        }
+        .opportunity p {
+          font-size: 15px;
+        }
+        .item-list .item {
+          width: 46.8%;
+          height: 215px;
+        }
+        .item-list .item .item-title p {
+          font-size: 21px;
+        }
+        .social .social-left h3 {
+          font-size: 20px;
+        }
+        .social .social-right img {
+          margin: 2px;
+        }
+        .social-bottom .social-text p {
+          font-size: 15px;
+          margin-top: 4px;
+        }
+        .contact .contact-heading h3 {
+          margin-bottom: 10px;
+          
+        }
+        .contact p {
+          font-size: 14px;
+        }
+        .footer p {
+          margin: 0px 0px;
+        }
+      }
+      @media screen and (max-width: 414px) {
+        #container {
+          max-width: 330px;
+          width: 330px;
+        }
+        .header-logo .logo-left img {
+          width: 71px;
+          height: 65px;
+        }
+        .header-logo .logo-right p {
+          font-size: 14px;
+        }
+        .item-list .item {
+          width: 45.8%;
+          height: 245px;
+        }
+        .item-list .item .item-img img {
+          width: 45px;
+          height: 45px;
+          padding: 3px;
+        }
+        .item-list .item .item-title p {
+          font-size: 16px;
+        }
+        .social .social-right ul {
+          padding-right: 10px;
+        }
+        .social .social-left h3 {
+          font-size: 16px;
+        }
+        .social .social-right img {
+          width: 22px;
+          height: 22px;
+          margin: 0px;
+        }
+        .social-bottom .social-text p {
+          font-size: 14px;
+        }
+        .contact .contact-heading h3 {
+          font-size: 19px;
+        }
+        .contact .contact-bottom {
+          margin-top: 15px;
+        }
+        .footer p {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="header">
+        <p>Problem viewing this email? <a href="#">Click Here</a></p>
+      </div>
+
+      <div class="header-logo">
+        <div class="logo-left">
+          <a href="https://www.digitalmarketingbd.com/" target="_blank"
+            ><img
+              src="./images/Digital Marketing Solution Pvt. Ltd-01.png"
+              alt="Logo"
+          /></a>
+        </div>
+        <div class="logo-right">
+          <p>
+            Are you frustrated and looking for high-quality digital marketing services to ignite your business?
+          </p>
+        </div>
+      </div>
+
+      <div class="banner">
+        <a href="#"
+          ><img
+            src="https://api.elasticemail.com/userfile/7cb647b8-4896-4186-8979-1484f316a575/dms_email-2.png"
+            width="100%"
+            height="auto"
+        /></a>
+      </div>
+
+      <div class="one-shop">
+        <p>We are the one shop specializing in helping Companies & Entrepreneurs grow their telecom products & Services! And in the last 8 years, we have helped grow dozens of companies and Entrepreneurs</p>
+        <p>The opportunity is almost over. Shop an extra 20% off our winter sale before it's all gone.
+       </p>
+      </div>
+
+      <div class="opportunity">
+        <a href="#"><h2>Our Services</h2></a>
+        
+      </div>
+      <div class="item-list">
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/social-media-marketing/"
+                target="_blank"
+                ><img
+                  src="./images/Target-Market-and-Tech-clear.png"
+                  alt="image-1"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/social-media-marketing/"
+                target="_blank"
+              >
+                <p>
+                  Targeted <br />
+                  Facebook <br />Marketing
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Run your ads on Facebook through Digital Marketing Solution (DMS) and find people who will love your business. 
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/guaranteed-seo-services/"
+                target="_blank"
+                ><img
+                  src="./images/search-engine-optimization.png"
+                  alt="image-2"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/guaranteed-seo-services/"
+                target="_blank"
+              >
+                <p>
+                  Search <br />
+                  Engine <br />optimization
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Do SEO for your website to bring higher close rates, establish brand awareness and save lots of money.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/targeted-email-marketing/"
+                target="_blank"
+                ><img src="./images/email-marketing.png" alt="image-1"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/targeted-email-marketing/"
+                target="_blank"
+              >
+                <p>
+                  Targeted <br />
+                  Email <br />Marketing
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Do Email Marketing to strengthen relationships, loyalty, and Trust at a low cost.
+
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/online-payment-service/"
+                target="_blank"
+                ><img src="./images/online-service-payment.png" alt="image-4"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/online-payment-service/"
+                target="_blank"
+              >
+                <p>Online <br />Payment <br />Service</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Take advantage of online payment service from Digital Marketing Solution (DMS) to reduce the transaction cost.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/creative-graphic-design/"
+                target="_blank"
+                ><img
+                  src="./images/creative-graphics-design-slide.png"
+                  alt="image-5"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/creative-graphic-design/"
+                target="_blank"
+              >
+                <p>Creative <br />Graphic <br />Design</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+             Hire a highly qualified graphic designer to attract and keep customers interested.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/sms-marketing/"
+                target="-blank"
+                ><img src="./images/brand-sms.png" alt="image-6"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/sms-marketing/"
+                target="_blank"
+              >
+                <p>
+                  Brand <br />
+                  SMS <br />Marketing
+                </p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Use SMS Marketing. If you want to get direct, immediate to increase customer engagement.
+
+
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/video-marketing/"
+                target="_blank"
+                ><img src="./images/2d-3d.png" alt="image-7"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/video-marketing/"
+                target="_blank"
+              >
+                <p>2D / 3D <br />Video <br />Making</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Bring your concept to life. Do you have any idea that you want to bring life? Let’s talk with our professional Animation Maker…
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/domain/"
+                target="_blank"
+                ><img src="./images/web-hosting.png" alt="image-8"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/domain/"
+                target="_blank"
+              >
+                <p>Domain <br />Hosting <br />Registration</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              The process of Registration Domain Hosting is easy. But the wrong name can lose your brand. To make the brand Name persuasive. Let’s talk with our professional Registration Expert.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/display-marketing-ppc/"
+                target="_blank"
+                ><img src="./images/ppc.png" alt="image-9"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/display-marketing-ppc/"
+                target="_blank"
+              >
+                <p>Google <br />Display <br />Adword</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
+              amet sit debitis quis porro nulla laboriosam illum mollitia fuga
+              excepturi.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/software-development/"
+                target="_blank"
+                ><img src="./images/software-development.png" alt="image-10"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/software-development/"
+                target="_blank"
+              >
+                <p>Software <br />Development <br />Service</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
+              amet sit debitis quis porro nulla laboriosam illum mollitia fuga
+              excepturi.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/web-development/"
+                target="_blank"
+                ><img src="./images/web-development.png" alt="image-11"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/web-development/"
+                target="_blank"
+              >
+                <p>Web <br />Development <br />Service</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
+              amet sit debitis quis porro nulla laboriosam illum mollitia fuga
+              excepturi.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-top">
+            <div class="item-img">
+              <a
+                href="https://www.digitalmarketingbd.com/outsourcing-training/"
+                target="_blank"
+                ><img src="./images/outsourcing.png" alt="image-12"
+              /></a>
+            </div>
+            <div class="item-title">
+              <a
+                href="https://www.digitalmarketingbd.com/outsourcing-training/"
+                target="_blank"
+              >
+              
+                <p>Outsourcing <br />Training <br />Service</p>
+              </a>
+            </div>
+          </div>
+          <div class="item-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim
+              amet sit debitis quis porro nulla laboriosam illum mollitia fuga
+              excepturi.
+            </p>
+          </div>
+          <div class="item-button">
+            <a href="#">Click Here</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="social">
+        <div class="social-left">
+          <a href="#"><h3>Digital Marketing Solution (Pvt.) Ltd.</h3></a>
+        </div>
+        <div class="social-right">
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/DMSBangladesh" target="_blank"
+                ><img src="./images/facebook.png" alt="Facebook"
+              /></a>
+            </li>
+            <li>
+              <a href="https://twitter.com/DMSBangladesh" target="_blank"
+                ><img src="./images/twiter.png" alt="Twiter"
+              /></a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/company/digital-marketing-solution-pvt-ltd/"
+                target="_blank"
+                ><img src="./images/LinkedIn.png" alt="Linkdin"
+              /></a>
+            </li>
+            <li>
+              <a
+                href="https://www.youtube.com/c/DigitalMarketingSolution"
+                target="_blank"
+                ><img src="./images/youtube-play-button.png" alt="Youtube"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-bottom">
+        <div class="social-text">
+          <p>
+            Busineess and Opportunity Overviews. There are few opportunities
+            that provide a full-time income potential while working on a
+            part-time basis.Busineess and Opportunity Overviews. There are few
+            opportunities that provide a full-time income potential while
+            working on a part-time basis.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div class="contact-heading">
+          <h3>The contact information:</h3>
+        </div>
+        <div class="contact-body">
+          <p>Digital Marketing Solution (Pvt.) Ltd.</p>
+          <p>Nigar Plaza, Flat # 6/A, Level 7, Rd# 02, Sec# 03, Rajlokkhi Uttara Dhaka</p>
+          <p>
+            Contact : +8809602260655, +880174-326-0655
+          </p>
+          <p>Whatapps: +8801534765627</p>
+          <P>Skype: dmsolution2015</P>
+        </div>
+
+        <div class="contact-bottom">
+          
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          Copyright © 2021 Digital Marketing Solution (Pvt.) Ltd. All Rights
+          Reserved.
+        </p>
+        <p>
+          <a
+            href="https://www.digitalmarketingbd.com/privacy-and-cookies/"
+            target="_blank"
+            >Privacy Policy & Procedures</a
+          >
+          | <a href="#">Terms of Use</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
